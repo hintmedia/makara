@@ -167,10 +167,10 @@ module Makara
       # related to ActiveRecord connection pool management)
       @proxy.class.control_methods.each do |meth|
         method_call = RUBY_VERSION >= "3.0.0" ? "public_send(#{meth.inspect}, ...)" : "#{meth}(*args=args, block)"
-        method_call2 = if meth.to_s.end_with?("=") && !meth.to_s.end_with?("==")
-          method_call
+        method_call2 = if meth == :owner
+          meth.to_s
         else
-          method_call.dup.sub("block","&block")
+          method_call
         end
 
         extension << <<~RUBY
