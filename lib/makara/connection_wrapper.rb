@@ -177,7 +177,7 @@ module Makara
           def #{meth}(#{args})
             proxy = _makara
             if proxy
-              proxy.control.#{method_call2}
+              proxy.control.#{method_call}
             else
               super # Only if we are not wrapped any longer
             end
